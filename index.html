@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ঢাকার স্বর্ণের বাজারের মূল্য তালিকা</title>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0F" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: { base: {50:'#f6f7f9',100:'#ECEEF2',900:'#0B0B0F'} },
+          boxShadow: { soft:'0 6px 30px rgba(0,0,0,.12)', ring:'inset 0 0 0 1px rgba(255,255,255,.06)'}
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Background */
+    .bgfx{position:fixed; inset:0; z-index:-1;}
+    .bgfx::before{
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(251,191,36,.12), transparent),
+        radial-gradient(900px 500px at 100% 10%, rgba(168,85,247,.10), transparent);
+    }
+
+    /* Topbar (modern) */
+    .topbar{ transition: background-color .2s, box-shadow .2s, border-color .2s; }
+    .topbar.scrolled{ background: rgba(11,11,15,.82); box-shadow: 0 8px 24px rgba(0,0,0,.22); border-color: rgba(255,255,255,.12); }
+
+    .brand{ display:inline-flex; align-items:center; gap:.55rem; }
+    .logo{
+      position:relative; width:28px; height:28px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fbbf24, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #a855f7, transparent 60%), #0b0b0f;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 18px rgba(251,191,36,.18);
+    }
+    .logo::after{ content:""; position:absolute; inset:0; border-radius:inherit; border:1px solid rgba(255,255,255,.12); }
+
+    .nav-link{ position:relative; padding:.55rem .95rem; border-radius:999px; font-weight:600; font-size:13px; opacity:.95; display:inline-flex; align-items:center; gap:.45rem; }
+    .nav-link:hover{ background: rgba(255,255,255,.08); }
+    .nav-link.active{ background:linear-gradient(180deg, rgba(251,191,36,.25), rgba(168,85,247,.18)); color:#fff; }
+    .nav-icon{ width:16px; height:16px; opacity:.9 }
+
+    .nav-rail{ position:relative; }
+    .nav-underline{ position:absolute; left:0; bottom:-6px; height:2px; width:0; background:linear-gradient(90deg,#fbbf24,#a855f7); border-radius:2px; transition:.25s; opacity:.85 }
+
+    /* Drawer */
+    #mobilePanel{ transform: translateX(-100%); transition: transform .28s ease; }
+    #mobileMenu.open #mobilePanel{ transform: translateX(0); }
+
+    /* Cards / tables */
+    .glass{ backdrop-filter:saturate(140%) blur(14px) }
+    .table-wrap{ position:relative; overflow:auto; border-radius:14px; border:1px solid rgba(255,255,255,.1); }
+    .table-wrap::after{ content:""; position:absolute; right:0; top:0; bottom:0; width:28px; pointer-events:none; background:linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,.22)); }
+    @media (min-width: 640px){ .table-wrap::after{ display:none } }
+
+    .flash{ animation:flashBg .9s ease-out }
+    @keyframes flashBg{ 0%{ background:linear-gradient(90deg,rgba(251,191,36,.22),transparent)} 100%{ background:transparent } }
+
+    /* Mobile: table -> cards */
+    @media (max-width:640px){
+      table.rtable{ width:100%; border-collapse:separate; border-spacing:0; }
+      table.rtable thead{ display:none; }
+      table.rtable tbody{ display:block; }
+      table.rtable tr{ display:grid; grid-template-columns:1fr; gap:.35rem; margin:10px 0; padding:.6rem .7rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,.14); }
+      table.rtable td{ display:flex; justify-content:space-between; align-items:center; padding:.45rem .25rem; }
+      table.rtable td::before{ content: attr(data-label); font-weight:600; color:#a3a3a3; margin-right:.75rem; }
+      table.rtable td.price{ justify-content:flex-end; font-weight:800; font-size:clamp(16px,5.2vw,22px); color:#facc15; letter-spacing:.2px; }
+      table.rtable td[data-label="মূল্য (BDT)"]{ border-top:1px dashed rgba(255,255,255,.16); padding-top:.6rem; }
+    }
+
+    /* Ads */
+    .ad-banner{ display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.16); color:#bbb; text-align:center; margin:12px 0; overflow:hidden; min-height:90px; position:relative }
+    .ad-label{ position:absolute; top:6px; right:10px; font-size:10px; letter-spacing:.08em; opacity:.7 }
+    @media(max-width:640px){ .ad-banner{ min-height:100px } }
+
+    /* Tabs (mobile quick nav bottom) */
+    .tabs{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; background:rgba(255,255,255,.05); padding:6px; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
+    .tab{ padding:.5rem .8rem; border-radius:999px; text-align:center; font-weight:600; font-size:13px; opacity:.9; }
+    .tab.active{ background:linear-gradient(180deg, rgba(251,191,36,.25), rgba(168,85,247,.18)); color:white; }
+    @media(min-width:1024px){ .tabs, .bottom-tabs{ display:none } }
+  </style>
+</head>
+<body class="bg-base-900 text-gray-100 antialiased selection:bg-amber-400/40" data-view="today">
+  <div class="bgfx"></div>
+
+  <!-- Topbar -->
+  <div id="topbar" class="topbar sticky top-0 z-40 backdrop-blur-xl bg-base-900/70 border-b border-white/10">
+    <header class="max-w-[min(1100px,92vw)] mx-auto px-4 py-3">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0 brand">
+          <button id="menuToggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 hover:bg-white/15" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+          <span class="logo shrink-0"></span>
+          <h1 class="truncate text-[clamp(18px,4.2vw,28px)] font-extrabold tracking-[-0.02em] text-white">CG BAZAR</h1>
+        </div>
+        <nav class="hidden md:flex items-center gap-2 nav-rail">
+          <button class="nav-link" data-go="today">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3v18" opacity=".6"/></svg>
+            আজকের দাম
+          </button>
+          <button class="nav-link" data-go="old">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><rect x="3" y="4" width="4" height="16" rx="1"/></svg>
+            পুরাতন
+          </button>
+          <button class="nav-link" data-go="new">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            নতুন
+          </button>
+          <a href="#about" class="nav-link">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+            About
+          </a>
+          <a href="#policy" class="nav-link">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 2v4M16 2v4"/></svg>
+            নীতিমালা
+          </a>
+          <a href="#contact" class="nav-link">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6"/><path d="M3 10l9 6 9-6"/></svg>
+            Contact
+          </a>
+          <span id="navUnderline" class="nav-underline"></span>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" data-close="menu"></div>
+    <div id="mobilePanel" class="absolute left-0 top-0 h-full w-[78%] max-w-xs bg-base-900 border-r border-white/10 p-4 flex flex-col gap-2">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <span class="logo w-5 h-5"></span><span class="font-bold">মেনু</span>
+        </div>
+        <button class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/15" data-close="menu" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <button class="nav-link text-left" data-go="today" data-close="menu">আজকের দাম</button>
+      <button class="nav-link text-left" data-go="old" data-close="menu">পুরাতন গহনা</button>
+      <button class="nav-link text-left" data-go="new" data-close="menu">নতুন গহনা</button>
+      <a href="#about" class="nav-link" data-close="menu">About</a>
+      <a href="#policy" class="nav-link" data-close="menu">নীতিমালা</a>
+      <a href="#contact" class="nav-link" data-close="menu">Contact</a>
+      <div class="mt-4 flex items-center gap-2 text-xs">
+        <button id="themeToggle" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/15">Light / Dark</button>
+        <button id="densityToggle" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/15">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP BANNER AD -->
+  <div class="max-w-[min(1100px,92vw)] mx-auto px-4">
+    <div id="ad-top" class="my-4">
+      <!-- Adsterra Banner 320x50 -->
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '593a4db7bbebdab5adfdc7adbc93973a',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/593a4db7bbebdab5adfdc7adbc93973a/invoke.js"></script>
+    </div>
+  </div>
+
+  <main class="max-w-[min(1100px,92vw)] mx-auto px-4 pb-24 space-y-8">
+    <!-- SECTION: TODAY -->
+    <section data-section="today" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/35 to-fuchsia-500/25">
+      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">আজকের স্বর্ণের দাম</h3>
+          <span id="status1" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
+        </div>
+        <div class="table-wrap">
+          <table class="rtable min-w-full text-[15px]" id="tableToday">
+            <thead class="bg-amber-500/95 text-black">
+              <tr>
+                <th class="px-4 py-3 text-left">স্বর্ণ</th>
+                <th class="px-4 py-3 text-left">বিবরণ</th>
+                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি বিস্কুট (99.99%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_bhori">৳ —</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি পাকা স্বর্ণ (99.50%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_pasha_bhori">৳ —</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম বিস্কুট (99.99%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_gram">৳ —</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAt1">—</span></p>
+      </div>
+    </section>
+
+    <!-- MID AD -->
+    <div id="ad-mid" class="my-4">
+      <!-- Adsterra 300x250 Banner -->
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'df88a618dbea98e03f01ed5592a4bb5f',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/df88a618dbea98e03f01ed5592a4bb5f/invoke.js"></script>
+    </div>
+
+    <!-- SECTION: OLD -->
+    <section data-section="old" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/30 to-fuchsia-500/18">
+      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">পুরাতন গহনা ক্রয় বিক্রয়</h3>
+        </div>
+        <div class="table-wrap">
+          <table class="rtable min-w-full text-[15px]" id="tableOld">
+            <thead class="bg-amber-500/95 text-black">
+              <tr>
+                <th class="px-4 py-3 text-left">স্বর্ণ</th>
+                <th class="px-4 py-3 text-left">বিবরণ</th>
+                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (91.67%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_22k_bhori">৳ —</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (87.50%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_21k_bhori">৳ —</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (91.67%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_22k_gram">৳ —</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
+                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (87.50%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_21k_gram">৳ —</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAtOld">—</span></p>
+      </div>
+    </section>
+
+    <!-- SECTION: NEW -->
+    <section data-section="new" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/22 to-fuchsia-500/12">
+      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">নতুন গহনা ক্রয়</h3>
+          <span id="status2" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
+        </div>
+        <div class="table-wrap">
+          <table class="rtable min-w-full text-[15px]" id="tableNew">
+            <thead class="bg-amber-500/95 text-black">
+              <tr>
+                <th class="px-4 py-3 text-left">নতুন গহনা ক্রয়</th>
+                <th class="px-4 py-3 text-left">বিবরণ</th>
+                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+              <tr>
+                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি ভরি</td>
+                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_22k_bhori">৳ —</span> <span class="text-xs opacity-70">/ ভরি</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি ভরি</td>
+                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_21k_bhori">৳ —</span> <span class="text-xs opacity-70">/ ভরি</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি গ্রাম</td>
+                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_22k_gram">৳ —</span> <span class="text-xs opacity-70">/ গ্রাম</span></td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি গ্রাম</td>
+                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
+                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_21k_gram">৳ —</span> <span class="text-xs opacity-70">/ গ্রাম</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAt2">—</span></p>
+      </div>
+    </section>
+
+    <!-- INFO SECTIONS -->
+    <section id="about" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
+      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
+        <h3 class="text-lg font-semibold mb-2">About</h3>
+        <p class="text-sm text-gray-300 leading-relaxed">আমরা একটি তথ্যভিত্তিক প্ল্যাটফর্ম, যেখানে সহজভাবে সোনার বাজারের নির্ভরযোগ্য আপডেট ও দরকারী তথ্য উপস্থাপন করা হয়।</p>
+        <p class="mt-2 text-xs text-rose-300/90">সর্বশেষ আপডেট: <span id="updatedAtTop">—</span></p>
+      </div>
+    </section>
+
+    <section id="policy" class="mt-6 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
+      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
+        <h3 class="text-lg font-semibold mb-2">সোনার দাম আপডেট নীতিমালা</h3>
+        <ul class="text-sm text-gray-300 list-disc pl-5 space-y-1">
+          <li>আমরা প্রতিদিন সকাল ১০:০০ টা থেকে বিকাল ৫:০০ টা পর্যন্ত ৫ থেকে ৮ বার নতুন সোনার দাম আপডেট করি।</li>
+          <li><strong>আন্তর্জাতিক বাজারে শনিবার ও রবিবার লেনদেন বন্ধ থাকে, তাই এই দুই দিন আনুমানিক মূল্য আপডেট করা হবে।</strong></li>
+          <li>আমরা বাংলাদেশের আইন ও বাংলাদেশ জুয়েলার্স অ্যাসোসিয়েশন (BAJUS) এর নীতিমালা অনুসরণ করে সোনার দাম আপডেট করি।</li>
+          <li>এই ওয়েবসাইটে প্রদত্ত <strong>সোনার দাম শুধুমাত্র তথ্যের জন্য</strong>। বাজার পরিস্থিতি পরিবর্তন হতে পারে, তাই কেনাবেচার সিদ্ধান্ত নেওয়ার আগে যাচাই করে নিন।</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT (Formspree connected) -->
+    <section id="contact" class="mt-6 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
+      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
+        <h3 class="text-lg font-semibold mb-2">Contact</h3>
+
+        <form class="grid gap-3 max-w-xl"
+              action="https://formspree.io/f/myznedlp"
+              method="POST" accept-charset="UTF-8">
+          <input type="text" name="name" placeholder="আপনার নাম"
+                 class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required>
+          <input type="email" name="email" placeholder="ইমেইল"
+                 class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required>
+          <textarea name="message" rows="4" placeholder="বার্তা"
+                    class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required></textarea>
+
+          <!-- Optional helpers -->
+          <input type="hidden" name="_subject"  value="নতুন কন্টাক্ট সাবমিশন">
+          <!-- <input type="hidden" name="_redirect" value="https://your-domain.com/thanks.html"> -->
+          <input type="text"   name="_gotcha"  style="display:none">
+
+          <button type="submit"
+                  class="justify-self-start px-4 py-2 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400">
+            Send
+          </button>
+
+          <p class="text-xs text-gray-400">ফর্ম সাবমিট করলে তথ্য সরাসরি আমাদের কাছে আসবে।</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom quick nav (mobile) -->
+  <nav class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 md:hidden bottom-tabs">
+    <div class="tabs">
+      <button class="tab active" data-go="today">আজ</button>
+      <button class="tab" data-go="old">পুরাতন</button>
+      <button class="tab" data-go="new">নতুন</button>
+    </div>
+  </nav>
+
+  <!-- Firebase + App Code -->
+<!-- SECTION: SHEET (above About) -->
+<section id="sheet" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/18 to-fuchsia-500/12">
+  <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
+    <h3 class="text-lg font-semibold mb-3">লাইভ প্রাইস শিট</h3>
+
+    <!-- Responsive embed -->
+    <div class="rounded-xl overflow-hidden border border-white/10 bg-white/5">
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
+        class="w-full h-[70vh] md:h-[78vh]"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      ></iframe>
+    </div>
+
+    <p class="mt-2 text-xs text-gray-400">উপরের শিটটি আপনার প্রদত্ত Google Sheet থেকে সরাসরি লোড হচ্ছে।</p>
+  </div>
+</section>
+
+
+  <script type="module">
+    // Firebase config (already provided)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDt5cJ0LIrZV5NGPS02QeEj9zogPyMm3Wg",
+      authDomain: "goldprice-6db2e.firebaseapp.com",
+      projectId: "goldprice-6db2e",
+      storageBucket: "goldprice-6db2e.firebasestorage.app",
+      messagingSenderId: "666004217573",
+      appId: "1:666004217573:web:832fe85d8b0d1e7b593e0c",
+      measurementId: "G-H8ZZJM7E5C"
+    };
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, doc, onSnapshot as onDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const moneyFmt = new Intl.NumberFormat('bn-BD',{ style:'currency', currency:'BDT', maximumFractionDigits:0 });
+
+    function setLiveBadge(el,ok){
+      if(!el) return;
+      el.textContent = ok ? 'Live' : 'Error';
+      el.className = 'text-xs px-2 py-1 rounded-full ' + (ok ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900');
+    }
+    function setUpdated(el, ts){
+      try {
+        const d = ts?.toDate ? ts.toDate() : (ts instanceof Date ? ts : null);
+        if (!d) { el.textContent = '—'; return; }
+        el.textContent = d.toLocaleString('bn-BD', {
+          timeZone: 'Asia/Dhaka',
+          hour12: true,
+          dateStyle: 'short',
+          timeStyle: 'medium'
+        });
+      } catch { el.textContent = '—'; }
+    }
+
+    const status1 = document.getElementById('status1');
+    const status2 = document.getElementById('status2');
+    const updatedAt1 = document.getElementById('updatedAt1');
+    const updatedAt2 = document.getElementById('updatedAt2');
+    const updatedAtOld = document.getElementById('updatedAtOld');
+    const updatedAtTop = document.getElementById('updatedAtTop');
+
+    const els = Array.from(document.querySelectorAll('[data-key]'))
+      .reduce((acc, span) => { acc[span.dataset.key] = span; return acc; }, {});
+
+    onSnapshot(collection(db,'prices'), (snap) => {
+      setLiveBadge(status1,true); setLiveBadge(status2,true);
+      snap.docs.forEach(d => {
+        const data = d.data() || {};
+        const key = data.key || d.id;
+        const el = els[key];
+        if (el && typeof data.price === 'number') {
+          const prev = el.getAttribute('data-prev');
+          const next = moneyFmt.format(data.price).replace('৳\u00A0','৳');
+          if(prev!==next){
+            el.textContent = next; el.setAttribute('data-prev', next);
+            const td = el.closest('td'); if(td){ td.classList.add('flash'); setTimeout(()=>td.classList.remove('flash'),700); }
+          }
+        }
+      });
+    }, ()=>{ setLiveBadge(status1,false); setLiveBadge(status2,false); });
+
+    // meta.updatedAt support (optional)
+    onDoc(doc(db,'meta','site'), (d)=>{
+      const data = d.data();
+      [updatedAt1,updatedAt2,updatedAtOld,updatedAtTop].forEach(el=> el && setUpdated(el, data?.updatedAt));
+    });
+
+    // NAV: setView + underline + tabs + drawer
+    function highlightNav(view){
+      document.querySelectorAll('.nav-link[data-go], .tab').forEach(el=>{
+        const match = el.dataset.go === view;
+        el.classList.toggle('active', match);
+      });
+      moveUnderline();
+    }
+    function setView(view){
+      document.body.setAttribute('data-view',view);
+      highlightNav(view);
+      const map = {today:'[data-section="today"]', old:'[data-section="old"]', new:'[data-section="new"]'};
+      if(map[view]){
+        const t = document.querySelector(map[view]);
+        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    }
+    document.querySelectorAll('.nav-link[data-go], .tab').forEach(btn=>{
+      btn.addEventListener('click',()=> setView(btn.dataset.go));
+    });
+
+    // Desktop underline
+    const navUnderline = document.getElementById('navUnderline');
+    function moveUnderline(){
+      const active = document.querySelector('nav .nav-link.active');
+      if(!active || !navUnderline) return;
+      const r = active.getBoundingClientRect();
+      const pr = active.parentElement.getBoundingClientRect();
+      navUnderline.style.width = r.width + 'px';
+      navUnderline.style.transform = `translateX(${r.left - pr.left}px)`;
+    }
+    window.addEventListener('resize', moveUnderline);
+    setTimeout(moveUnderline, 80);
+
+    // Drawer
+    const mMenu=document.getElementById('mobileMenu');
+    const mToggle=document.getElementById('menuToggle');
+    function openMenu(){ mMenu.classList.remove('hidden'); mMenu.classList.add('open'); mToggle?.setAttribute('aria-expanded','true'); }
+    function closeMenu(){ mMenu.classList.add('hidden'); mMenu.classList.remove('open'); mToggle?.setAttribute('aria-expanded','false'); }
+    mToggle?.addEventListener('click',openMenu);
+    mMenu?.addEventListener('click',(e)=>{ if(e.target.closest('[data-close="menu"]') || e.target===mMenu) closeMenu(); });
+    document.querySelectorAll('#mobileMenu .nav-link').forEach(b=>b.addEventListener('click',closeMenu));
+
+    // Sticky effect
+    const topbar=document.getElementById('topbar');
+    document.addEventListener('scroll',()=>{ if(window.scrollY>6){ topbar.classList.add('scrolled'); } else { topbar.classList.remove('scrolled'); } }, {passive:true});
+
+    // Ads placeholder sizing (safe if ad slots missing)
+    function mountPlaceholder(id){
+      const c=document.getElementById(id); if(!c) return;
+      const w=c.clientWidth;
+      const text = w>=970?'970×90' : (w>=728?'728×90' : '320×100');
+      const inner = c.querySelector('div');
+      if(inner) inner.textContent = 'Banner Ad ('+text+')';
+    }
+    ['ad-top','ad-mid','ad-bottom'].forEach(mountPlaceholder);
+    window.addEventListener('resize', ()=>['ad-top','ad-mid','ad-bottom'].forEach(mountPlaceholder));
+
+    // Density + theme toggles
+    document.getElementById('densityToggle')?.addEventListener('click',()=>{
+      document.querySelectorAll('table.rtable td, table.rtable th').forEach(el=>{
+        el.classList.toggle('py-2'); el.classList.toggle('py-3');
+      });
+    });
+    document.getElementById('themeToggle')?.addEventListener('click',()=>{
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
+
+  <!--
+  Firestore data model (উদাহরণ):
+  Collection: prices
+    Doc ID: price_24k_biscuit_bhori { key:"price_24k_biscuit_bhori", price:158969 }
+    Doc ID: price_24k_pasha_bhori   { key:"price_24k_pasha_bhori",   price:158174 }
+    Doc ID: price_24k_biscuit_gram  { key:"price_24k_biscuit_gram",  price:13634 }
+    Doc ID: price_old_22k_bhori     { key:"price_old_22k_bhori",     price:145727 }
+    Doc ID: price_old_21k_bhori     { key:"price_old_21k_bhori",     price:139098 }
+    Doc ID: price_old_22k_gram      { key:"price_old_22k_gram",      price:12498 }
+    Doc ID: price_old_21k_gram      { key:"price_old_21k_gram",      price:11929 }
+    Doc ID: price_new_22k_bhori     { key:"price_new_22k_bhori",     price:165200 }
+    Doc ID: price_new_21k_bhori     { key:"price_new_21k_bhori",     price:157697 }
+    Doc ID: price_new_22k_gram      { key:"price_new_22k_gram",      price:14164 }
+    Doc ID: price_new_21k_gram      { key:"price_new_21k_gram",      price:13520 }
+
+  Optional Collection: meta
+    Doc: site { updatedAt: serverTimestamp() }
+
+  Security rules (public read, no write):
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /prices/{docId} { allow read: if true; allow write: if false; }
+      match /meta/{docId}   { allow read: if true; allow write: if false; }
+    }
+  }
+  -->
+</body>
+</html>
