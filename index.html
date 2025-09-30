@@ -327,19 +327,16 @@
   <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
     <h3 class="text-lg font-semibold mb-3">লাইভ প্রাইস শিট</h3>
 
-    <!-- Responsive embed -->
-    <div class="rounded-xl overflow-hidden border border-white/10 bg-white/5">
-      <iframe
-        src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
-        class="w-full h-[70vh] md:h-[78vh]"
-        loading="lazy"
-        referrerpolicy="no-referrer"
-      ></iframe>
-    </div>
+<!-- Responsive embed -->
+<div class="rounded-xl overflow-auto border border-white/10 bg-white/5 max-h-[65vh] sm:max-h-[78vh]">
+  <iframe
+    src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
+    class="w-full min-h-[480px]"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+  ></iframe>
+</div>
 
-    <p class="mt-2 text-xs text-gray-400">উপরের শিটটি আপনার প্রদত্ত Google Sheet থেকে সরাসরি লোড হচ্ছে।</p>
-  </div>
-</section>
 
     <section id="about" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
       <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
