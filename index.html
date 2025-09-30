@@ -23,6 +23,30 @@
     }
   </script>
   <style>
+  /* Edge-to-edge helper (mobile) */
+@media (max-width: 640px){
+  .edge-mobile{
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+}
+
+/* Wrapper for iframe zoom */
+.iframe-zoom-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border: none;
+}
+
+/* Zoomed iframe */
+.iframe-zoom {
+  width: 120%;              /* স্কেল অনুযায়ী বাড়তি width */
+  height: 70vh;             /* ভিউপোর্ট হাইট */
+  border: 0;
+  transform: scale(0.85);   /* 0.85 মানে 85% = জুম আউট */
+  transform-origin: 0 0;    /* উপরের বাম দিক থেকে স্কেল হবে */
+}
+
     html { scroll-behavior: smooth; }
 
     /* Background */
@@ -322,20 +346,25 @@
     </section>
 
     <!-- INFO SECTIONS -->
-    <!-- SECTION: SHEET (above About) -->
-<section id="sheet" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/18 to-fuchsia-500/12">
-  <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
-    <h3 class="text-lg font-semibold mb-3">লাইভ প্রাইস শিট</h3>
+   <!-- SECTION: SHEET (above About) -->
+<section id="sheet" class="mt-10 md:p-[1px] rounded-2xl md:bg-gradient-to-br md:from-amber-400/18 md:to-fuchsia-500/12">
+  <div class="rounded-2xl bg-neutral-900/70 glass shadow-soft shadow-ring p-0 md:p-7 md:border md:border-white/10">
+    <h3 class="text-lg font-semibold mb-3 px-5 md:px-0">লাইভ প্রাইস শিট</h3>
 
-<!-- Responsive embed -->
-<div class="rounded-xl overflow-auto border border-white/10 bg-white/5 max-h-[65vh] sm:max-h-[78vh]">
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
-    class="w-full min-h-[480px]"
-    loading="lazy"
-    referrerpolicy="no-referrer"
-  ></iframe>
-</div>
+    <!-- Mobile edge-to-edge + Zoom -->
+    <div class="iframe-zoom-wrapper edge-mobile sm:mx-0 sm:rounded-xl sm:overflow-hidden">
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
+        class="iframe-zoom"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      ></iframe>
+    </div>
+
+    <p class="mt-2 text-xs text-gray-400 px-5 md:px-0">এই শিটটি সরাসরি Google Sheet থেকে লোড হচ্ছে। মোবাইলে এজ-টু-এজ দেখা যাবে।</p>
+  </div>
+</section>
+
 
 
     <section id="about" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
