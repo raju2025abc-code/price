@@ -23,47 +23,57 @@
     }
   </script>
   <style>
-  /* Edge-to-edge helper (mobile) */
-@media (max-width: 640px){
-  .edge-mobile{
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-}
-
-/* Wrapper for iframe zoom */
+ /* Wrapper: চাইলে swipe/pan দিতে overflow-x:auto ব্যবহার করতে পারেন */
 .iframe-zoom-wrapper {
   display: flex;
-  justify-content: center; /* iframe কে parent এর ভেতরে সেন্টার করবে */
+  justify-content: center;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden;          /* যদি কাটে, এটা বদলে overflow-x:auto করুন */
   border: none;
 }
 
-/* Base iframe (iPhone SE default) */
+/* iPhone SE ডিফল্ট (বড় করা) */
 .iframe-zoom {
-  width: 130%;
-  height: 65vh;
+  width: 125%;
+  height: 70vh;
   border: 0;
-  transform: scale(0.78);
-  transform-origin: top center; /* বাম থেকে না, উপরের দিক থেকে মাঝখানে সেন্টার হবে */
+  transform: scale(0.85);      /* আগে 0.78 ছিল → একটু বড় */
+  transform-origin: top center;
 }
 
-/* iPhone Mini (~375px width) */
+/* ~375px (Mini) */
 @media (min-width: 375px){
   .iframe-zoom {
-    width: 125%;
-    height: 68vh;
-    transform: scale(0.82);
+    width: 120%;
+    height: 72vh;
+    transform: scale(0.88);    /* আগে 0.82 → বড় */
   }
 }
 
-/* Big iPhones (~414px) */
+/* ~414px (বড় iPhone) */
 @media (min-width: 414px){
   .iframe-zoom {
-    width: 120%;
-    height: 70vh;
-    transform: scale(0.85);
+    width: 115%;
+    height: 75vh;
+    transform: scale(0.92);    /* আগে 0.85 → বড় */
+  }
+}
+
+/* Tablet (>=768px) */
+@media (min-width: 768px){
+  .iframe-zoom {
+    width: 110%;
+    height: 76vh;
+    transform: scale(0.95);    /* আগে 0.9 → বড় */
+  }
+}
+
+/* Desktop (>=1024px) */
+@media (min-width: 1024px){
+  .iframe-zoom {
+    width: 100%;
+    height: 80vh;
+    transform: scale(1);       /* ডেস্কটপে নরমাল রাখলাম (কাটার ঝুঁকি কম) */
   }
 }
 
