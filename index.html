@@ -1,804 +1,663 @@
-<!DOCTYPE html>
-<html lang="bn" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ঢাকার স্বর্ণের বাজারের মূল্য তালিকা</title>
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0B0B0F" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
-          colors: { base: {50:'#f6f7f9',100:'#ECEEF2',900:'#0B0B0F'} },
-          boxShadow: { soft:'0 6px 30px rgba(0,0,0,.12)', ring:'inset 0 0 0 1px rgba(255,255,255,.06)'}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 🔹 Basic SEO Tags for Anik (UPDATED) -->
+    <title>Anik - Official Profile</title>
+    <meta name="description" content="Anik - A creative content creator, storyteller and digital artist. Know more about Anik and his works.">
+    <meta name="keywords" content="Anik, Anik Official, Anik Bangladesh, Anik content creator, Anik profile, Anik story, Anik photo">
+    <meta name="author" content="Anik">
+    <meta name="robots" content="index, follow">
+
+    <!-- 🔹 Open Graph (Facebook, WhatsApp, etc.) (NEW) -->
+    <meta property="og:title" content="Anik - Official Profile">
+    <meta property="og:description" content="Discover Anik, a creative storyteller and digital artist.">
+    <meta property="og:image" content="https://i.ibb.co/GQqZ9Pnd/IMG-7239.jpg"> <!-- Updated Image URL -->
+    <meta property="og:url" content="https://your-website-url.com"> <!-- Updated URL -->
+    <meta property="og:type" content="website">
+
+    <!-- 🔹 Twitter Card (NEW) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anik - Official Profile">
+    <meta name="twitter:description" content="Discover Anik, a creative storyteller and digital artist.">
+    <meta name="twitter:image" content="https://i.ibb.co/GQqZ9Pnd/IMG-7239.jpg"> <!-- Updated Image URL -->
+    
+    <!-- NEW: Schema.org Markup for Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Anik Hossan",
+      "jobTitle": "Creative Animator & Motion Designer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Manikganj",
+        "addressCountry": "BD"
+      },
+      "telephone": "+8801630249778",
+      "image": "https://i.ibb.co/GQqZ9Pnd/IMG-7239.jpg",
+      "url": "https://your-website-url.com", // <-- IMPORT: Apnar domain-er link-ti ekhane boshan
+      "sameAs": [
+        "https://facebook.com/anik.site",
+        "https://tiktok.com/@anik.site",
+        "https://instagram.com/anik.1014",
+        "https://wa.me/8801630249778",
+        "https://github.com/...", // Apnar GitHub link
+        "https://linkedin.com/in/..." // Apnar LinkedIn link
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* UPDATED: Switched to a subtle radial gradient for a more professional look */
+            background-color: #020617; /* slate-950 as fallback */
+            background-image: radial-gradient(circle at top center, #1e293b 30%, #0f172a 70%, #020617 100%);
+            color: #cbd5e1; /* slate-300 */
+            overflow-x: hidden; /* Prevent horizontal scroll from shapes */
         }
-      }
-    }
-  </script>
-  <style>
- /* Wrapper: চাইলে swipe/pan দিতে overflow-x:auto ব্যবহার করতে পারেন */
-.iframe-zoom-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  overflow: hidden;          /* যদি কাটে, এটা বদলে overflow-x:auto করুন */
-  border: none;
-}
+        
+        /* New background shapes animation */
+        .shape {
+            position: absolute;
+            bottom: -150px; /* Start below the screen */
+            border-radius: 50%;
+            background-color: rgba(6, 182, 212, 0.1); /* Faint cyan */
+            animation: float-up 20s linear infinite;
+            filter: blur(20px);
+            will-change: transform, opacity;
+        }
+        .shape.s1 { width: 80px; height: 80px; left: 10%; animation-duration: 25s; animation-delay: 0s; }
+        .shape.s2 { width: 120px; height: 120px; left: 30%; animation-duration: 20s; animation-delay: 3s; background-color: rgba(8, 51, 68, 0.3); }
+        .shape.s3 { width: 50px; height: 50px; left: 50%; animation-duration: 30s; animation-delay: 1s; }
+        .shape.s4 { width: 150px; height: 150px; left: 70%; animation-duration: 18s; animation-delay: 5s; }
+        .shape.s5 { width: 100px; height: 100px; left: 85%; animation-duration: 22s; animation-delay: 2s; background-color: rgba(8, 51, 68, 0.3); }
+        .shape.s6 { width: 60px; height: 60px; left: 0%; animation-duration: 28s; animation-delay: 7s; }
 
-/* iPhone SE ডিফল্ট (বড় করা) */
-.iframe-zoom {
-  width: 125%;
-  height: 70vh;
-  border: 0;
-  transform: scale(0.85);      /* আগে 0.78 ছিল → একটু বড় */
-  transform-origin: top center;
-}
+        @keyframes float-up {
+            from { bottom: -150px; opacity: 0; transform: translateX(0); }
+            25% { opacity: 0.2; }
+            50% { transform: translateX(20px); }
+            75% { opacity: 0.2; }
+            to { bottom: 100vh; opacity: 0; transform: translateX(-20px); }
+        }
+        
+        /* Active navigation link style */
+        .nav-link.active {
+            color: #06b6d4; /* cyan-500 */
+        }
+        /* Desktop nav indicator */
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #06b6d4;
+            border-radius: 1px;
+            margin: 4px auto 0;
+            transform: scaleX(1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .nav-link:not(.active)::after {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #06b6d4;
+            border-radius: 1px;
+            margin: 4px auto 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        .nav-link:not(.active):hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Animated gradient for name */
+        .animated-gradient-text {
+            background: linear-gradient(to right, #06b6d4, #67e8f9, #06b6d4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite;
+        }
 
-/* ~375px (Mini) */
-@media (min-width: 375px){
-  .iframe-zoom {
-    width: 120%;
-    height: 72vh;
-    transform: scale(0.88);    /* আগে 0.82 → বড় */
-  }
-}
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
 
-/* ~414px (বড় iPhone) */
-@media (min-width: 414px){
-  .iframe-zoom {
-    width: 115%;
-    height: 75vh;
-    transform: scale(0.92);    /* আগে 0.85 → বড় */
-  }
-}
+        /* REMOVED: Avatar float animation */
+        
+        /* NEW: Subtle ping animation for avatar glow */
+        @keyframes subtle-ping {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+        .avatar-glow {
+            animation: subtle-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
 
-/* Tablet (>=768px) */
-@media (min-width: 768px){
-  .iframe-zoom {
-    width: 110%;
-    height: 76vh;
-    transform: scale(0.95);    /* আগে 0.9 → বড় */
-  }
-}
+        /* NEW: Featured logo animation */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 0.6; /* Target opacity */
+                transform: translateY(0);
+            }
+        }
+        
+        .featured-logo {
+            opacity: 0; /* Start hidden */
+        }
+        
+        .featured-logo.animate-fade-in {
+             animation: fade-in-up 0.5s ease-out forwards;
+        }
 
-/* Desktop (>=1024px) */
-@media (min-width: 1024px){
-  .iframe-zoom {
-    width: 100%;
-    height: 80vh;
-    transform: scale(1);       /* ডেস্কটপে নরমাল রাখলাম (কাটার ঝুঁকি কম) */
-  }
-}
+        /* Page transition styles */
+        [data-page] {
+            display: none; /* Hide all pages by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            will-change: opacity, transform;
+        }
+        [data-page].page-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* Tablets (>=768px) */
-@media (min-width: 768px){
-  .iframe-zoom {
-    width: 110%;
-    height: 72vh;
-    transform: scale(0.9);
-  }
-}
+        /* Portfolio Card Hover */
+        .portfolio-card:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+        
+        /* Mobile menu icon animation */
+        .hamburger { display: block; cursor: pointer; }
+        .hamburger-line {
+            width: 24px; height: 2px; background-color: #cbd5e1;
+            display: block; margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .mobile-menu.open .line-1 { transform: translateY(7px) rotate(45deg); }
+        .mobile-menu.open .line-2 { opacity: 0; }
+        .mobile-menu.open .line-3 { transform: translateY(-7px) rotate(-45deg); }
 
-/* Desktop (>=1024px) */
-@media (min-width: 1024px){
-  .iframe-zoom {
-    width: 100%;
-    height: 78vh;
-    transform: scale(1);
-  }
-}
-
-    /* Topbar (modern) */
-    .topbar{ transition: background-color .2s, box-shadow .2s, border-color .2s; }
-    .topbar.scrolled{ background: rgba(11,11,15,.82); box-shadow: 0 8px 24px rgba(0,0,0,.22); border-color: rgba(255,255,255,.12); }
-
-    .brand{ display:inline-flex; align-items:center; gap:.55rem; }
-    .logo{
-      position:relative; width:28px; height:28px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, #fbbf24, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #a855f7, transparent 60%), #0b0b0f;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 18px rgba(251,191,36,.18);
-    }
-    .logo::after{ content:""; position:absolute; inset:0; border-radius:inherit; border:1px solid rgba(255,255,255,.12); }
-
-    .nav-link{ position:relative; padding:.55rem .95rem; border-radius:999px; font-weight:600; font-size:13px; opacity:.95; display:inline-flex; align-items:center; gap:.45rem; }
-    .nav-link:hover{ background: rgba(255,255,255,.08); }
-    .nav-link.active{ background:linear-gradient(180deg, rgba(251,191,36,.25), rgba(168,85,247,.18)); color:#fff; }
-    .nav-icon{ width:16px; height:16px; opacity:.9 }
-
-    .nav-rail{ position:relative; }
-    .nav-underline{ position:absolute; left:0; bottom:-6px; height:2px; width:0; background:linear-gradient(90deg,#fbbf24,#a855f7); border-radius:2px; transition:.25s; opacity:.85 }
-
-    /* Drawer */
-    #mobilePanel{ transform: translateX(-100%); transition: transform .28s ease; }
-    #mobileMenu.open #mobilePanel{ transform: translateX(0); }
-
-    /* Cards / tables */
-    .glass{ backdrop-filter:saturate(140%) blur(14px) }
-    .table-wrap{ position:relative; overflow:auto; border-radius:14px; border:1px solid rgba(255,255,255,.1); }
-    .table-wrap::after{ content:""; position:absolute; right:0; top:0; bottom:0; width:28px; pointer-events:none; background:linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,.22)); }
-    @media (min-width: 640px){ .table-wrap::after{ display:none } }
-
-    /* --- Flash animation for price changes --- */
-    .flash{ animation:flashBg .9s ease-out }
-    @keyframes flashBg{ 
-      0%{ background:rgba(251,191,36,.22) } 
-      100%{ background:transparent } 
-    }
-    /* --- Flash animation for USD table --- */
-    .flash-usd{ animation:flashBgUsd .9s ease-out }
-    @keyframes flashBgUsd{ 
-      0%{ background:rgba(59, 130, 246, 0.25) } /* Blue flash */
-      100%{ background:transparent } 
-    }
-
-    /* Mobile: table -> cards */
-    @media (max-width:640px){
-      table.rtable{ width:100%; border-collapse:separate; border-spacing:0; }
-      table.rtable thead{ display:none; }
-      table.rtable tbody{ display:block; }
-      table.rtable tr{ display:grid; grid-template-columns:1fr; gap:.35rem; margin:10px 0; padding:.6rem .7rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,.14); }
-      table.rtable td{ display:flex; justify-content:space-between; align-items:center; padding:.45rem .25rem; }
-      table.rtable td::before{ content: attr(data-label); font-weight:600; color:#a3a3a3; margin-right:.75rem; }
-      /* Price column in mobile card view */
-      table.rtable td.price{ 
-        justify-content:flex-end; font-weight:800; font-size:clamp(16px,5.2vw,22px); 
-        color:#facc15; /* Default yellow for Firebase tables */
-        letter-spacing:.2px; 
-      }
-      /* USD table specific price color */
-      table.rtable td.price-usd{
-        color: #60a5fa; /* Blue for USD table */
-      }
-      table.rtable td[data-label^="মূল্য ("]{ border-top:1px dashed rgba(255,255,255,.16); padding-top:.6rem; }
-    }
-
-    /* Ads */
-    .ad-banner{ display:flex; align-items:center; justify-content:center; border-radius:16px; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.16); color:#bbb; text-align:center; margin:12px 0; overflow:hidden; min-height:90px; position:relative }
-    .ad-label{ position:absolute; top:6px; right:10px; font-size:10px; letter-spacing:.08em; opacity:.7 }
-    @media(max-width:640px){ .ad-banner{ min-height:100px } }
-
-    /* Tabs (mobile quick nav bottom) */
-    .tabs{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; background:rgba(255,255,255,.05); padding:6px; border-radius:999px; border:1px solid rgba(255,255,255,.12); }
-    .tab{ padding:.5rem .8rem; border-radius:999px; text-align:center; font-weight:600; font-size:13px; opacity:.9; }
-    .tab.active{ background:linear-gradient(180deg, rgba(251,191,36,.25), rgba(168,85,247,.18)); color:white; }
-    @media(min-width:1024px){ .tabs, .bottom-tabs{ display:none } }
-  </style>
+        /* Mobile menu panel animation */
+        #mobile-menu-panel {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
 </head>
-<body class="bg-base-900 text-gray-100 antialiased selection:bg-amber-400/40" data-view="today">
-  <div class="bgfx"></div>
+<body class="antialiased">
 
-  <div id="topbar" class="topbar sticky top-0 z-40 backdrop-blur-xl bg-base-900/70 border-b border-white/10">
-    <header class="max-w-[min(1100px,92vw)] mx-auto px-4 py-3">
-      <div class="flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0 brand">
-          <button id="menuToggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 hover:bg-white/15" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-          </button>
-          <span class="logo shrink-0"></span>
-          <h1 class="truncate text-[clamp(18px,4.2vw,28px)] font-extrabold tracking-[-0.02em] text-white">CG BAZAR</h1>
-        </div>
-        <nav class="hidden md:flex items-center gap-2 nav-rail">
-          <button class="nav-link" data-go="today">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3v18" opacity=".6"/></svg>
-            আজকের দাম
-          </button>
-          <button class="nav-link" data-go="old">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><rect x="3" y="4" width="4" height="16" rx="1"/></svg>
-            পুরাতন
-          </button>
-          <button class="nav-link" data-go="new">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-            নতুন
-          </button>
-          <a href="#about" class="nav-link">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
-            About
-          </a>
-          <a href="#policy" class="nav-link">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 2v4M16 2v4"/></svg>
-            নীতিমালা
-          </a>
-          <a href="#contact" class="nav-link">
-            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6"/><path d="M3 10l9 6 9-6"/></svg>
-            Contact
-          </a>
-          <span id="navUnderline" class="nav-underline"></span>
+    <!-- Animated Background Shapes -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden" aria-hidden="true">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+        <div class="shape s4"></div>
+        <div class="shape s5"></div>
+        <div class="shape s6"></div>
+    </div>
+
+    <!-- Header and Navigation -->
+    <!-- UPDATED: Made header more transparent for glass effect -->
+    <header class="bg-slate-900/50 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-slate-700/30">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-white nav-link" data-nav="home">
+                        Anik<span class="text-cyan-500">.</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:space-x-8">
+                    <a href="#" class="nav-link text-slate-300 hover:text-cyan-500 transition-colors duration-200" data-nav="home">Home</a>
+                    <a href="#" class="nav-link text-slate-300 hover:text-cyan-500 transition-colors duration-200" data-nav="about">About</a>
+                    <a href="#" class="nav-link text-slate-300 hover:text-cyan-500 transition-colors duration-200" data-nav="portfolio">Portfolio</a>
+                    <a href="#" class="nav-link text-slate-300 hover:text-cyan-500 transition-colors duration-200" data-nav="contact">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu" aria-label="Open main menu" aria-expanded="false">
+                        <span class="hamburger-line line-1"></span>
+                        <span class="hamburger-line line-2"></span>
+                        <span class="hamburger-line line-3"></span>
+                    </button>
+                </div>
+            </div>
         </nav>
-      </div>
+
+        <!-- Mobile Menu Panel -->
+        <!-- UPDATED: Made mobile menu more transparent -->
+        <div id="mobile-menu-panel" class="md:hidden absolute top-16 left-0 w-full bg-slate-800/80 backdrop-blur-lg shadow-lg border-b border-slate-700/30">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-700/50" data-nav="home">Home</a>
+                <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-700/50" data-nav="about">About</a>
+                <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-700/50" data-nav="portfolio">Portfolio</a>
+                <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-700/50" data-nav="contact">Contact</a>
+            </div>
+        </div>
     </header>
-  </div>
 
-  <div id="mobileMenu" class="md:hidden fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/50" data-close="menu"></div>
-    <div id="mobilePanel" class="absolute left-0 top-0 h-full w-[78%] max-w-xs bg-base-900 border-r border-white/10 p-4 flex flex-col gap-2">
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center gap-2">
-          <span class="logo w-5 h-5"></span><span class="font-bold">মেনু</span>
-        </div>
-        <button class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/15" data-close="menu" aria-label="Close menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <button class="nav-link text-left" data-go="today" data-close="menu">আজকের দাম</button>
-      <button class="nav-link text-left" data-go="old" data-close="menu">পুরাতন গহনা</button>
-      <button class="nav-link text-left" data-go="new" data-close="menu">নতুন গহনা</button>
-      <a href="#about" class="nav-link" data-close="menu">About</a>
-      <a href="#policy" class="nav-link" data-close="menu">নীতিমালা</a>
-      <a href="#contact" class="nav-link" data-close="menu">Contact</a>
-      <div class="mt-4 flex items-center gap-2 text-xs">
-        <button id="themeToggle" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/15">Light / Dark</button>
-        <button id="densityToggle" class="px-3 py-1 rounded-full bg-white/10 hover:bg-white/15">Compact</button>
-      </div>
-    </div>
-  </div>
+    <!-- Main Content Area -->
+    <main id="main-content" class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        
+        <!-- Home Page -->
+        <section id="home" data-page class="page-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12 min-h-[60vh]">
+                <!-- Text Content -->
+                <!-- UPDATED: Added order-last md:order-first -->
+                <div class="text-center md:text-left order-last md:order-first">
+                    <span class="text-lg font-medium text-cyan-500">Hello, I'm</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white mt-2 mb-4">
+                        <span class="animated-gradient-text">Anik</span>
+                    </h1>
+                    <p class="text-2xl md:text-3xl font-medium text-slate-300 mb-8">
+                        Creative Animator & Motion Designer
+                    </p>
+                    <p class="text-lg text-slate-400 mb-10 max-w-lg mx-auto md:mx-0">
+                        I bring ideas to life through fluid motion, compelling characters, and stunning visual effects.
+                    </p>
+                    <a href="#" class="nav-link inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105" data-nav="portfolio">
+                        View My Work
+                    </a>
+                    
+                    <!-- NEW: Featured In Section -->
+                    <div class="mt-12 text-center md:text-left">
+                        <p class="text-sm font-medium text-slate-500 uppercase tracking-wider mb-3">Featured In</p>
+                        <!-- REMOVED opacity-60 from parent -->
+                        <div class="flex items-center justify-center md:justify-start space-x-6">
+                            <!-- Placeholder Logos. Using simple text placeholders for logos -->
+                            <!-- ADDED featured-logo class and style-based animation-delay -->
+                            <div class="text-lg font-semibold text-slate-400 featured-logo" style="animation-delay: 200ms;">STUDIO<span class="text-cyan-600">X</span></div>
+                            <div class="text-lg font-semibold text-slate-400 featured-logo" style="animation-delay: 400ms;">MOTION<span class="text-cyan-600">LY</span></div>
+                            <div class="text-lg font-semibold text-slate-400 featured-logo" style="animation-delay: 600ms;">ANIMATE<span class="text-cyan-600">CO</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avatar Image (REMOVED Float) -->
+                <!-- UPDATED: Added order-first md:order-last and mt-8 -->
+                <div class="flex justify-center items-center order-first md:order-last mt-8">
+                    <div class="relative"> <!-- Removed avatar-float class -->
+                        <img src="https://i.ibb.co/GQqZ9Pnd/IMG-7239.jpg" 
+                             alt="Portrait of Anik Hossan - Creative Animator" 
+                             class="w-64 h-64 md:w-96 md:h-96 rounded-full object-cover shadow-2xl border-4 border-slate-700"
+                             onerror="this.src='https://placehold.co/400x400/1e293b/06b6d4?text=Anik'">
+                        <!-- Glow effect (Changed class) -->
+                        <div class="absolute top-0 left-0 w-full h-full rounded-full border-2 border-cyan-500/50 opacity-50 avatar-glow"></div> <!-- Replaced animate-ping -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <div class="max-w-[min(1100px,92vw)] mx-auto px-4">
-    <div id="ad-top" class="my-4">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '593a4db7bbebdab5adfdc7adbc93973a',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/593a4db7bbebdab5adfdc7adbc93973a/invoke.js"></script>
-    </div>
-  </div>
+        <!-- About Page -->
+        <section id="about" data-page class="page-content" style="display: none;">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-white mb-4">About Me</h2>
+                <span class="block w-20 h-1 bg-cyan-500 mx-auto mb-8"></span>
+                <img src="https://i.ibb.co/GQqZ9Pnd/IMG-7239.jpg" 
+                     alt="Anik Hossan - Animator from Manikganj" 
+                     class="w-48 h-48 rounded-full object-cover mx-auto mb-8 shadow-lg border-4 border-slate-700"
+                     onerror="this.src='https://placehold.co/300x300/1e293b/06b6d4?text=Anik'">
+                <p class="text-lg text-slate-300 mb-6">
+                    Hello! I'm Anik Hossan, a 22-year-old animator based in Manikganj, Bangladesh. With over 5 years of experience in 2D/3D animation, motion graphics, and visual storytelling, my journey began with a simple flipbook and grew into a professional career.
+                </p>
+                <p class="text-lg text-slate-300 mb-12">
+                    I thrive on challenges and am always exploring new techniques to push the boundaries of animation. My toolkit includes After Effects, Blender, Maya, and the Adobe Creative Suite.
+                </p>
 
-  <main class="max-w-[min(1100px,92vw)] mx-auto px-4 pb-24 space-y-8">
+                <h3 class="text-3xl font-bold text-white mb-8">My Skills</h3>
+                <!-- UPDATED: Changed from flex-wrap to a grid for a boxy look -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-left">
+                    <!-- Skill Box 1 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">2D Animation</h4>
+                        <p class="text-slate-400 text-sm">Bringing characters to life with fluid frame-by-frame and modern rigging techniques.</p>
+                    </div>
+                    <!-- Skill Box 2 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">3D Modeling</h4>
+                        <p class="text-slate-400 text-sm">Low-poly and high-poly asset creation, sculpting, and texturing.</p>
+                    </div>
+                    <!-- Skill Box 3 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">Motion Graphics</h4>
+                        <p class="text-slate-400 text-sm">Engaging titles, infographics, and UI animations.</p>
+                    </div>
+                    <!-- Skill Box 4 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">After Effects</h4>
+                        <p class="text-slate-400 text-sm">Expert in complex compositing, VFX, and particle systems.</p>
+                    </div>
+                    <!-- Skill Box 5 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">Blender</h4>
+                        <p class="text-slate-400 text-sm">Full 3D pipeline including modeling, animation, and rendering.</p>
+                    </div>
+                    <!-- Skill Box 6 -->
+                    <!-- UPDATED: Added glassmorphism effect -->
+                    <div class="bg-slate-800/50 backdrop-blur-lg p-6 rounded-lg shadow-lg border border-slate-600/30 hover:border-cyan-600 hover:shadow-cyan-500/10 transition-all duration-300">
+                        <h4 class="text-xl font-bold text-white mb-2">Storyboarding</h4>
+                        <p class="text-slate-400 text-sm">Crafting visual narratives and planning complex scenes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section class="p-[1px] rounded-2xl bg-gradient-to-br from-blue-400/35 to-green-500/25">
-      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">আন্তর্জাতিক বাজার (USD)</h3>
-          <span id="api_status_usd" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
-        </div>
-        <div class="table-wrap">
-          <table class="rtable min-w-full text-[15px]">
-            <thead class="bg-blue-600/95 text-white"> <tr>
-                <th class="px-4 py-3 text-left">Unit</th>
-                <th class="px-4 py-3 text-left">Description</th>
-                <th class="px-4 py-3 text-left">Price (USD) / Change</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
-              <tr id="api-row-ounce">
-                <td class="px-4 py-3" data-label="Unit">Ounce (আউন্স)</td>
-                <td class="px-4 py-3" data-label="Description">প্রতি আউন্স (31.1035g)</td>
-                <td class="px-4 py-3 price price-usd" data-label="মূল্য (USD)">
-                  <div class="flex items-center justify-end gap-2">
-                    <span id="api-price-ounce" class="text-blue-400 text-lg">Loading...</span>
-                    <span id="api-change-ounce" class="text-sm font-normal"></span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="api-row-vori">
-                <td class="px-4 py-3" data-label="Unit">Vori (ভরি)</td>
-                <td class="px-4 py-3" data-label="Description">প্রতি ভরি (11.664g)</td>
-                <td class="px-4 py-3 price price-usd" data-label="মূল্য (USD)">
-                   <div class="flex items-center justify-end gap-2">
-                    <span id="api-price-vori" class="text-blue-400 text-lg">Loading...</span>
-                    <span id="api-change-vori" class="text-sm font-normal"></span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="api-row-gram">
-                <td class="px-4 py-3" data-label="Unit">Gram (গ্রাম)</td>
-                <td class="px-4 py-3" data-label="Description">প্রতি গ্রাম (1g)</td>
-                <td class="px-4 py-3 price price-usd" data-label="মূল্য (USD)">
-                   <div class="flex items-center justify-end gap-2">
-                    <span id="api-price-gram" class="text-blue-400 text-lg">Loading...</span>
-                    <span id="api-change-gram" class="text-sm font-normal"></span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-3 text-blue-300/90 text-xs">সর্বশেষ আপডেট: <span id="api-updatedAt">...</span></p>
-      </div>
-    </section>
+        <!-- Portfolio Page -->
+        <section id="portfolio" data-page class="page-content" style="display: none;">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-white mb-4">My Portfolio</h2>
+                <span class="block w-20 h-1 bg-cyan-500 mx-auto mb-12"></span>
+            </div>
 
-    <section data-section="today" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/35 to-fuchsia-500/25">
-      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">আজকের স্বর্ণের দাম (BDT)</h3>
-          <span id="status1" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
-        </div>
-        <div class="table-wrap">
-          <table class="rtable min-w-full text-[15px]" id="tableToday">
-            <thead class="bg-amber-500/95 text-black">
-              <tr>
-                <th class="px-4 py-3 text-left">স্বর্ণ</th>
-                <th class="px-4 py-3 text-left">বিবরণ</th>
-                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি বিস্কুট (99.99%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_bhori">৳ —</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি পাকা স্বর্ণ (99.50%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_pasha_bhori">৳ —</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম বিস্কুট (99.99%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_gram">৳ —</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAt1">—</span></p>
-      </div>
-    </section>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <!-- UPDATED: Added glassmorphism effect -->
+                <div class="bg-slate-800/50 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden group portfolio-card border border-slate-600/30 transition-all duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://loremflickr.com/600/400/motion,graphics" alt="Project 1" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/06b6d4?text=Project+1'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Character Reel</h3>
+                        <p class="text-slate-400 mb-4">A showcase of dynamic 2D character animations.</p>
+                        <a href="#" class="text-cyan-500 hover:text-cyan-400 font-medium">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <!-- UPDATED: Added glassmorphism effect -->
+                <div class="bg-slate-800/50 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden group portfolio-card border border-slate-600/30 transition-all duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://loremflickr.com/600/400/3d,render" alt="Project 2" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/06b6d4?text=Project+2'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">3D Environment</h3>
+                        <p class="text-slate-400 mb-4">A stylized, low-poly environment modeled in Blender.</p>
+                        <a href="#" class="text-cyan-500 hover:text-cyan-400 font-medium">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 -->
+                <!-- UPDATED: Added glassmorphism effect -->
+                <div class="bg-slate-800/50 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden group portfolio-card border border-slate-600/30 transition-all duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://loremflickr.com/600/400/abstract,animation" alt="Project 3" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/06b6d4?text=Project+3'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Abstract Motion</h3>
+                        <p class="text-slate-400 mb-4">Liquid and particle simulations in After Effects.</p>
+                        <a href="#" class="text-cyan-500 hover:text-cyan-400 font-medium">View Project &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div id="ad-mid" class="my-4">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'df88a618dbea98e03f01ed5592a4bb5f',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/df88a618dbea98e03f01ed5592a4bb5f/invoke.js"></script>
-    </div>
+        <!-- Contact Page -->
+        <section id="contact" data-page class="page-content" style="display: none;">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-white mb-4">Get In Touch</h2>
+                <span class="block w-20 h-1 bg-cyan-500 mx-auto mb-8"></span>
+                <p class="text-lg text-slate-300 mb-10">
+                    I'm currently available for freelance projects and full-time opportunities. Have a project in mind? Let's talk!
+                </p>
 
-    <section data-section="old" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/30 to-fuchsia-500/18">
-      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">পুরাতন গহনা ক্রয় বিক্রয়</h3>
-        </div>
-        <div class="table-wrap">
-          <table class="rtable min-w-full text-[15px]" id="tableOld">
-            <thead class="bg-amber-500/95 text-black">
-              <tr>
-                <th class="px-4 py-3 text-left">স্বর্ণ</th>
-                <th class="px-4 py-3 text-left">বিবরণ</th>
-                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (91.67%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_22k_bhori">৳ —</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (87.50%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_21k_bhori">৳ —</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (91.67%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_22k_gram">৳ —</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
-                <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (87.50%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_old_21k_gram">৳ —</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAtOld">—</span></p>
-      </div>
-    </section>
+                <!-- UPDATED: Added glassmorphism effect to form -->
+                <form class="bg-slate-800/50 backdrop-blur-lg border border-slate-600/30 p-8 rounded-lg shadow-xl text-left space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
+                        <!-- UPDATED: Added glassmorphism effect to input -->
+                        <input type="text" id="name" class="w-full px-4 py-3 bg-slate-900/50 border border-slate-600/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 backdrop-blur-sm" placeholder="Anik">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Your Email</label>
+                        <!-- UPDATED: Added glassmorphism effect to input -->
+                        <input type="email" id="email" class="w-full px-4 py-3 bg-slate-900/50 border border-slate-600/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 backdrop-blur-sm" placeholder="anik@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                        <!-- UPDATED: Added glassmorphism effect to input -->
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 bg-slate-900/50 border border-slate-600/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 backdrop-blur-sm" placeholder="Let's create something amazing..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
 
-    <section data-section="new" class="p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/22 to-fuchsia-500/12">
-      <div class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-[clamp(16px,3.5vw,20px)] font-semibold">নতুন গহনা ক্রয়</h3>
-          <span id="status2" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
-        </div>
-        <div class="table-wrap">
-          <table class="rtable min-w-full text-[15px]" id="tableNew">
-            <thead class="bg-amber-500/95 text-black">
-              <tr>
-                <th class="px-4 py-3 text-left">নতুন গহনা ক্রয়</th>
-                <th class="px-4 py-3 text-left">বিবরণ</th>
-                <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-white/5 bg-neutral-900/30">
-              <tr>
-                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি ভরি</td>
-                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_22k_bhori">৳ —</span> <span class="text-xs opacity-70">/ ভরি</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি ভরি</td>
-                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_21k_bhori">৳ —</span> <span class="text-xs opacity-70">/ ভরি</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি গ্রাম</td>
-                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_22k_gram">৳ —</span> <span class="text-xs opacity-70">/ গ্রাম</span></td>
-              </tr>
-              <tr>
-                <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি গ্রাম</td>
-                <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
-                <td class="px-4 py-3 price" data-label="মূল্য (BDT)"><span data-key="price_new_21k_gram">৳ —</span> <span class="text-xs opacity-70">/ গ্রাম</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-3 text-rose-300/90 text-xs">সর্বশেষ আপডেট: <span id="updatedAt2">—</span></p>
-      </div>
-    </section>
+                <!-- NEW: Phone Number -->
+                <div class="mt-12">
+                    <p class="text-lg text-slate-300 mb-6">Or contact me directly:</p>
+                    <a href="tel:+8801630249778" class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-slate-800/50 backdrop-blur-lg border border-slate-600/30 rounded-lg text-lg text-cyan-400 hover:text-white hover:border-cyan-600 transition-all duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        <span>+8801630249778</span>
+                    </a>
+                </div>
 
-    <section id="sheet" class="mt-10 md:p-[1px] rounded-2xl md:bg-gradient-to-br md:from-amber-400/18 md:to-fuchsia-500/12">
-  <div class="rounded-2xl bg-neutral-900/70 glass shadow-soft shadow-ring p-0 md:p-7 md:border md:border-white/10">
-    <h3 class="text-lg font-semibold mb-3 px-5 md:px-0">Dhaka Gold Price</h3>
+                <!-- Social Media Links -->
+                <!-- UPDATED: Added new icons and responsive grid -->
+                <div class="mt-12">
+                    <p class="text-lg text-slate-300 mb-6">Find me on other platforms:</p>
+                    <div class="flex justify-center flex-wrap gap-6 md:gap-8">
+                        <!-- Facebook -->
+                        <a href="https://facebook.com/anik.site" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="Facebook">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z"/>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com/@anik.site" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="TikTok">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-2.13.04-4.27-.61-5.88-2.04-1.33-1.19-2.14-2.85-2.58-4.5-.4-1.5-.4-3.07-.39-4.65.01-1.4.04-2.8.02-4.21-.16-1.53-.8-3.02-1.87-4.11-1.05-1.07-2.5-1.7-3.95-1.83v-4.01c1.46.1 2.9.49 4.15 1.25.48.28 1.05.74 1.48 1.15.01-2.92.01-5.84.02-8.75.08-1.39.54-2.79 1.35-3.94 1.31-1.92 3.58-3.17 5.91-3.21 2.13-.04 4.27.61 5.88-2.04 1.33-1.19 2.14-2.85 2.58-4.5.4-1.5.4-3.07-.39-4.65Z"/>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="TikTok">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-2.13.04-4.27-.61-5.88-2.04-1.33-1.19-2.14-2.85-2.58-4.5-.4-1.5-.4-3.07-.39-4.65.01-1.4.04-2.8.02-4.21-.16-1.53-.8-3.02-1.87-4.11-1.05-1.07-2.5-1.7-3.95-1.83v-4.01c1.46.1 2.9.49 4.15 1.25.48.28 1.05.74 1.48 1.15.01-2.92.01-5.84.02-8.75.08-1.39.54-2.79 1.35-3.94 1.31-1.92 3.58-3.17 5.91-3.21 2.13-.04 4.27.61 5.88-2.04 1.33-1.19 2.14-2.85 2.58-4.5.4-1.5.4-3.07.39-4.65Z"/>
+                            </svg>
+                        </a>
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/8801630249778" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="WhatsApp">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 21.8c-5.4 0-9.8-4.4-9.8-9.8S6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8zm4.75-7.81c-.29-.14-1.72-.84-1.98-.94-.27-.09-.46-.14-.66.14-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.14-1.25-.46-2.38-1.47-.88-.78-1.47-1.76-1.64-2.05-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.09-.19.05-.38-.02-.52-.07-.14-.66-1.59-.9-2.18-.24-.59-.48-.5-.66-.5h-.6c-.19 0-.48.07-.73.37-.24.29-.92.9-1.13 2.15-.22 1.25.24 2.8 1.3 4.48 1.06 1.68 2.8 3.53 5.18 4.79 2.38 1.25 3.53 1.13 4.48.9 1.25-.22 2.15-.92 2.8-1.13.29-.24.37-.48.37-.73v-.6c-.01-.19-.08-.48-.37-.73z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/anik.1014" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="Instagram">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="LinkedIn">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <!-- GitHub -->
+                        <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="GitHub">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <!-- Twitter (X) -->
+                        <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="Twitter">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <!-- Pinterest -->
+                        <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="Pinterest">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.1 3.156 9.42 7.504 11.188-.125-.914-.223-2.313.004-3.28.24-1.01 1.58-6.68 1.58-6.68s-.398-.795-.398-1.97c0-1.845 1.07-3.22 2.41-3.22 1.135 0 1.68.85 1.68 1.87 0 1.13-.72 2.81-1.09 4.36-.31 1.3.65 2.36 1.92 2.36 2.3 0 4.05-2.43 4.05-5.9 0-3.1-2.2-5.37-5.18-5.37-3.58 0-5.68 2.68-5.68 5.4 0 1.02.38 2.12.86 2.73.09.11.1.2.07.31l-.22.88c-.08.31-.19.42-.48.31-1.78-.6-2.9-2.34-2.9-4.3 0-2.8 2.05-5.98 6.3-5.98 3.32 0 5.85 2.35 5.85 5.5 0 3.42-2.12 6.17-5.18 6.17-1.05 0-2.05-.53-2.4-1.15l-.75 2.85c-.27 1.04-1.02 2.34-1.52 3.1.92.28 1.88.44 2.88.44 6.627 0 12-5.373 12-12C24 5.373 18.627 0 12 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="iframe-zoom-wrapper edge-mobile sm:mx-0 sm:rounded-xl sm:overflow-hidden">
-      <iframe
-        src="https://docs.google.com/spreadsheets/d/13IK4AQFx4kBeHi-hNsEuxnD7PVgD11sf2ZSA1VCPNi0/pubhtml?widget=true&headers=false"
-        class="iframe-zoom"
-        loading="lazy"
-        referrerpolicy="no-referrer"
-      ></iframe>
-    </div>
+    </main>
 
-    <p class="mt-2 text-xs text-gray-400 px-5 md:px-0">
-      
-    </p>
-  </div>
-</section>
+    <script>
+        // Main script for page navigation and interactions
 
+        /**
+         * Shows the requested page and hides all others.
+         * @param {string} pageId - The ID of the page element to show (e.g., 'home', 'about').
+         */
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('[data-page]').forEach(page => {
+                page.style.display = 'none';
+                page.classList.remove('page-active');
+            });
 
-    <section id="about" class="mt-10 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
-      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
-        <h3 class="text-lg font-semibold mb-2">About</h3>
-        <p class="text-sm text-gray-300 leading-relaxed">আমরা একটি তথ্যভিত্তিক প্ল্যাটফর্ম, যেখানে সহজভাবে সোনার বাজারের নির্ভরযোগ্য আপডেট ও দরকারী তথ্য উপস্থাপন করা হয়।</p>
-        <p class="mt-2 text-xs text-rose-300/90">সর্বশেষ আপডেট: <span id="updatedAtTop">—</span></p>
-      </div>
-    </section>
+            // NEW: Reset logo animation when leaving home
+            document.querySelectorAll('.featured-logo').forEach(logo => {
+                logo.classList.remove('animate-fade-in');
+            });
 
-    <section id="policy" class="mt-6 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
-      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
-        <h3 class="text-lg font-semibold mb-2">সোনার দাম আপডেট নীতিমালা</h3>
-        <ul class="text-sm text-gray-300 list-disc pl-5 space-y-1">
-          <li>আমরা প্রতিদিন সকাল ১০:০০ টা থেকে বিকাল ৫:০০ টা পর্যন্ত ৫ থেকে ৮ বার নতুন সোনার দাম আপডেট করি।</li>
-          <li><strong>আন্তর্জাতিক বাজারে শনিবার ও রবিবার লেনদেন বন্ধ থাকে, তাই এই দুই দিন আনুমানিক মূল্য আপডেট করা হবে।</strong></li>
-          <li>আমরা বাংলাদেশের আইন ও বাংলাদেশ জুয়েলার্স অ্যাসোসিয়েশন (BAJUS) এর নীতিমালা অনুসরণ করে সোনার দাম আপডেট করি।</li>
-          <li>এই ওয়েবসাইটে প্রদত্ত <strong>সোনার দাম শুধুমাত্র তথ্যের জন্য</strong>। বাজার পরিস্থিতি পরিবর্তন হতে পারে, তাই কেনাবেচার সিদ্ধান্ত নেওয়ার আগে যাচাই করে নিন।</li>
-        </ul>
-      </div>
-    </section>
+            // Show the target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                // Use a tiny timeout to allow the 'display: block' to register
+                // before triggering the transition.
+                setTimeout(() => {
+                    targetPage.classList.add('page-active');
+                    
+                    // NEW: Trigger featured logo animation if on home page
+                    if (pageId === 'home') {
+                        document.querySelectorAll('.featured-logo').forEach(logo => {
+                            logo.classList.add('animate-fade-in');
+                        });
+                    }
+                }, 10);
+            } else {
+                console.error('Page not found:', pageId);
+            }
 
-    <section id="contact" class="mt-6 p-[1px] rounded-2xl bg-gradient-to-br from-amber-400/15 to-fuchsia-500/10">
-      <div class="rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring border border-white/10">
-        <h3 class="text-lg font-semibold mb-2">Contact</h3>
-
-        <form class="grid gap-3 max-w-xl"
-              action="https://formspree.io/f/myznedlp"
-              method="POST" accept-charset="UTF-8">
-          <input type="text" name="name" placeholder="আপনার নাম"
-                 class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required>
-          <input type="email" name="email" placeholder="ইমেইল"
-                 class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required>
-          <textarea name="message" rows="4" placeholder="বার্তা"
-                    class="px-3 py-2 rounded-lg bg-white/5 border border-white/10 outline-none focus:border-white/20" required></textarea>
-
-          <input type="hidden" name="_subject"  value="নতুন কন্টাক্ট সাবমিশন">
-          <input type="text"   name="_gotcha"  style="display:none">
-
-          <button type="submit"
-                  class="justify-self-start px-4 py-2 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400">
-            Send
-          </button>
-
-          <p class="text-xs text-gray-400">ফর্ম সাবমিট করলে তথ্য সরাসরি আমাদের কাছে আসবে।</p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <nav class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 md:hidden bottom-tabs">
-    <div class="tabs">
-      <button class="tab active" data-go="today">আজ</button>
-      <button class="tab" data-go="old">পুরাতন</button>
-      <button class="tab" data-go="new">নতুন</button>
-    </div>
-  </nav>
-
-  <script type="module">
-    // Firebase config (already provided)
-    const firebaseConfig = {
-      apiKey: "AIzaSyDt5cJ0LIrZV5NGPS02QeEj9zogPyMm3Wg",
-      authDomain: "goldprice-6db2e.firebaseapp.com",
-      projectId: "goldprice-6db2e",
-      storageBucket: "goldprice-6db2e.firebasestorage.app",
-      messagingSenderId: "666004217573",
-      appId: "1:666004217573:web:832fe85d8b0d1e7b593e0c",
-      measurementId: "G-H8ZZJM7E5C"
-    };
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, onSnapshot, doc, onSnapshot as onDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const moneyFmt = new Intl.NumberFormat('bn-BD',{ style:'currency', currency:'BDT', maximumFractionDigits:0 });
-
-    // =================================================================
-    // === START: gold-api.com (USD) LOGIC (Notun Add Kora Holo) ===
-    // =================================================================
-    
-    const API_URL = "https://api.gold-api.com/price/XAU";
-    const GRAMS_PER_OUNCE = 31.1034768;
-    const GRAMS_PER_VORI = 11.664;
-    
-    // Global variables to store the last prices for comparison
-    let lastOuncePrice = 0;
-    let lastVoriPrice = 0;
-    let lastGramPrice = 0;
-    const usdApiStatusEl = document.getElementById('api_status_usd');
-    const usdApiUpdatedEl = document.getElementById('api-updatedAt');
-
-    /**
-     * Helper function to format price and calculate/display change
-     * (USD Table Version)
-     */
-    function updateUsdPriceCell(priceElId, indicatorElId, rowElId, currentPrice, lastPrice) {
-      const priceEl = document.getElementById(priceElId);
-      const indicatorEl = document.getElementById(indicatorElId);
-      const rowEl = document.getElementById(rowElId);
-
-      // 1. Format the main price
-      const formattedPrice = currentPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      priceEl.textContent = `$${formattedPrice}`; // Add $ sign
-
-      // 2. Calculate and format the change
-      let changeAmount = 0;
-      if (lastPrice !== 0 && currentPrice !== 0) {
-        changeAmount = currentPrice - lastPrice;
-      }
-      const formattedChange = changeAmount.toFixed(2);
-
-      // 3. Set indicator text and color
-      let indicatorText = '';
-      let indicatorColor = 'text-gray-500'; // Default: Grey
-
-      if (changeAmount > 0) {
-        indicatorText = `+${formattedChange}`;
-        indicatorColor = 'text-green-500'; // Green for Up
-      } else if (changeAmount < 0) {
-        indicatorText = `${formattedChange}`; // Negative sign is included
-        indicatorColor = 'text-red-500'; // Red for Down
-      } else {
-        indicatorText = '(±0.00)';
-      }
-
-      indicatorEl.textContent = indicatorText;
-      indicatorEl.className = `text-sm font-normal ${indicatorColor}`;
-      
-      // Add flash animation to the row
-      if (lastPrice !== 0 && lastPrice !== currentPrice && rowEl) {
-        rowEl.classList.add('flash-usd');
-        setTimeout(() => rowEl.classList.remove('flash-usd'), 900);
-      }
-
-      return currentPrice;
-    }
-
-    /**
-     * Fetches data from the Gold API and updates the HTML table.
-     */
-    async function fetchAndUpdateUsdPrice() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        // Update status badge
-        if (usdApiStatusEl) {
-          usdApiStatusEl.textContent = 'Live';
-          usdApiStatusEl.className = 'text-xs px-2 py-1 rounded-full bg-green-200 text-green-900';
+            // Update active state in navigation
+            const currentActive = document.querySelector('.nav-link.active');
+            if (currentActive) {
+                currentActive.classList.remove('active');
+            }
+            
+            // Add active class to all links pointing to this pageId
+            document.querySelectorAll(`.nav-link[data-nav="${pageId}"]`).forEach(link => {
+                link.classList.add('active');
+            });
         }
 
-        const currentOuncePrice = parseFloat(data.price);
-        if (isNaN(currentOuncePrice) || currentOuncePrice === 0) {
-          throw new Error("Invalid price data from API.");
+        /**
+         * Handles mobile menu toggle.
+         */
+        function toggleMobileMenu() {
+            const menuButton = document.querySelector('.mobile-menu');
+            const menuPanel = document.getElementById('mobile-menu-panel');
+            
+            const isOpen = menuButton.classList.toggle('open');
+            menuButton.setAttribute('aria-expanded', isOpen);
+            
+            if (isOpen) {
+                menuPanel.classList.add('open');
+            } else {
+                menuPanel.classList.remove('open');
+            }
         }
 
-        const currentGramPrice = currentOuncePrice / GRAMS_PER_OUNCE;
-        const currentVoriPrice = currentGramPrice * GRAMS_PER_VORI;
+        // Wait for the DOM to be fully loaded before running scripts
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Setup navigation link clicks
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = e.currentTarget.getAttribute('data-nav');
+                    
+                    showPage(pageId);
+                    
+                    // If on mobile, close the menu after navigation
+                    const menuPanel = document.getElementById('mobile-menu-panel');
+                    if (menuPanel.classList.contains('open')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
 
-        // Update all three price rows
-        lastOuncePrice = updateUsdPriceCell('api-price-ounce', 'api-change-ounce', 'api-row-ounce', currentOuncePrice, lastOuncePrice);
-        lastVoriPrice = updateUsdPriceCell('api-price-vori', 'api-change-vori', 'api-row-vori', currentVoriPrice, lastVoriPrice);
-        lastGramPrice = updateUsdPriceCell('api-price-gram', 'api-change-gram', 'api-row-gram', currentGramPrice, lastGramPrice);
+            // Setup mobile menu toggle button
+            const menuButton = document.querySelector('.mobile-menu');
+            if (menuButton) {
+                menuButton.addEventListener('click', toggleMobileMenu);
+            }
 
-        // Update footer
-        if (usdApiUpdatedEl) {
-            const date = new Date(data.updatedAt);
-            usdApiUpdatedEl.textContent = `${data.updatedAtReadable} | ${date.toLocaleString('bn-BD', { timeZone: 'Asia/Dhaka', hour12: true, dateStyle: 'short', timeStyle: 'medium' })}`;
-        }
+            // Show the 'home' page by default
+            showPage('home');
 
-      } catch (error) {
-        console.error("Failed to fetch USD price data:", error);
-        if (usdApiStatusEl) {
-          usdApiStatusEl.textContent = 'Error';
-          usdApiStatusEl.className = 'text-xs px-2 py-1 rounded-full bg-red-200 text-red-900';
-        }
-        if(usdApiUpdatedEl) usdApiUpdatedEl.textContent = `Connection Error.`;
-      }
-    }
-
-    // Run the USD price fetcher
-    fetchAndUpdateUsdPrice();
-    setInterval(fetchAndUpdateUsdPrice, 30000); // Refresh every 30 seconds
-
-    // =================================================================
-    // === END: gold-api.com (USD) LOGIC ===
-    // =================================================================
-
-
-
-    // =================================================================
-    // === START: FIREBASE (BDT) LOGIC (Apnar original code) ===
-    // =================================================================
-
-    function setLiveBadge(el,ok){
-      if(!el) return;
-      el.textContent = ok ? 'Live' : 'Error';
-      el.className = 'text-xs px-2 py-1 rounded-full ' + (ok ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900');
-    }
-    function setUpdated(el, ts){
-      try {
-        const d = ts?.toDate ? ts.toDate() : (ts instanceof Date ? ts : null);
-        if (!d) { el.textContent = '—'; return; }
-        el.textContent = d.toLocaleString('bn-BD', {
-          timeZone: 'Asia/Dhaka',
-          hour12: true,
-          dateStyle: 'short',
-          timeStyle: 'medium'
         });
-      } catch { el.textContent = '—'; }
-    }
 
-    const status1 = document.getElementById('status1');
-    const status2 = document.getElementById('status2');
-    const updatedAt1 = document.getElementById('updatedAt1');
-    const updatedAt2 = document.getElementById('updatedAt2');
-    const updatedAtOld = document.getElementById('updatedAtOld');
-    const updatedAtTop = document.getElementById('updatedAtTop');
-
-    const els = Array.from(document.querySelectorAll('[data-key]'))
-      .reduce((acc, span) => { acc[span.dataset.key] = span; return acc; }, {});
-
-    onSnapshot(collection(db,'prices'), (snap) => {
-      setLiveBadge(status1,true); setLiveBadge(status2,true);
-      snap.docs.forEach(d => {
-        const data = d.data() || {};
-        const key = data.key || d.id;
-        const el = els[key];
-        if (el && typeof data.price === 'number') {
-          const prev = el.getAttribute('data-prev');
-          const next = moneyFmt.format(data.price).replace('৳\u00A0','৳');
-          if(prev!==next){
-            el.textContent = next; el.setAttribute('data-prev', next);
-            // Original code used 'td' for flash, using 'el.closest' is safer
-            const td = el.closest('td.price'); 
-            if(td){ td.classList.add('flash'); setTimeout(()=>td.classList.remove('flash'), 900); }
-          }
-        }
-      });
-    }, ()=>{ setLiveBadge(status1,false); setLiveBadge(status2,false); });
-
-    // meta.updatedAt support (optional)
-    onDoc(doc(db,'meta','site'), (d)=>{
-      const data = d.data();
-      [updatedAt1,updatedAt2,updatedAtOld,updatedAtTop].forEach(el=> el && setUpdated(el, data?.updatedAt));
-    });
-
-    // =================================================================
-    // === END: FIREBASE (BDT) LOGIC ===
-    // =================================================================
-
-
-    // =================================================================
-    // === START: NAVIGATION & UI LOGIC (Apnar original code) ===
-    // =================================================================
-
-    // NAV: setView + underline + tabs + drawer
-    function highlightNav(view){
-      document.querySelectorAll('.nav-link[data-go], .tab').forEach(el=>{
-        const match = el.dataset.go === view;
-        el.classList.toggle('active', match);
-      });
-      moveUnderline();
-    }
-    function setView(view){
-      document.body.setAttribute('data-view',view);
-      highlightNav(view);
-      const map = {today:'[data-section="today"]', old:'[data-section="old"]', new:'[data-section="new"]'};
-      if(map[view]){
-        const t = document.querySelector(map[view]);
-        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }
-    document.querySelectorAll('.nav-link[data-go], .tab').forEach(btn=>{
-      btn.addEventListener('click',()=> setView(btn.dataset.go));
-    });
-
-    // Desktop underline
-    const navUnderline = document.getElementById('navUnderline');
-    function moveUnderline(){
-      const active = document.querySelector('nav .nav-link.active');
-      if(!active || !navUnderline) return;
-      const r = active.getBoundingClientRect();
-      const pr = active.parentElement.getBoundingClientRect();
-      navUnderline.style.width = r.width + 'px';
-      navUnderline.style.transform = `translateX(${r.left - pr.left}px)`;
-    }
-    window.addEventListener('resize', moveUnderline);
-    setTimeout(moveUnderline, 80); // Set initial position
-
-    // Drawer
-    const mMenu=document.getElementById('mobileMenu');
-    const mToggle=document.getElementById('menuToggle');
-    function openMenu(){ mMenu.classList.remove('hidden'); mMenu.classList.add('open'); mToggle?.setAttribute('aria-expanded','true'); }
-    function closeMenu(){ mMenu.classList.add('hidden'); mMenu.classList.remove('open'); mToggle?.setAttribute('aria-expanded','false'); }
-    mToggle?.addEventListener('click',openMenu);
-    mMenu?.addEventListener('click',(e)=>{ if(e.target.closest('[data-close="menu"]') || e.target===mMenu) closeMenu(); });
-    document.querySelectorAll('#mobileMenu .nav-link').forEach(b=>b.addEventListener('click',closeMenu));
-
-    // Sticky effect
-    const topbar=document.getElementById('topbar');
-    document.addEventListener('scroll',()=>{ if(window.scrollY>6){ topbar.classList.add('scrolled'); } else { topbar.classList.remove('scrolled'); } }, {passive:true});
-
-    // Ads placeholder sizing (safe if ad slots missing)
-    function mountPlaceholder(id){
-      const c=document.getElementById(id); if(!c) return;
-      const w=c.clientWidth;
-      const text = w>=970?'970×90' : (w>=728?'728×90' : '320×100');
-      const inner = c.querySelector('div');
-      if(inner) inner.textContent = 'Banner Ad ('+text+')';
-    }
-    ['ad-top','ad-mid','ad-bottom'].forEach(mountPlaceholder);
-    window.addEventListener('resize', ()=>['ad-top','ad-mid','ad-bottom'].forEach(mountPlaceholder));
-
-    // Density + theme toggles
-    document.getElementById('densityToggle')?.addEventListener('click',()=>{
-      document.querySelectorAll('table.rtable td, table.rtable th').forEach(el=>{
-        el.classList.toggle('py-2'); el.classList.toggle('py-3');
-      });
-    });
-    document.getElementById('themeToggle')?.addEventListener('click',()=>{
-      document.documentElement.classList.toggle('dark');
-    });
-
-    // Set initial view
-    highlightNav('today');
-    // =================================================================
-    // === END: NAVIGATION & UI LOGIC ===
-    // =================================================================
-
-  </script>
-
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
